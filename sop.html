@@ -4,17 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>subrat - homepage</title>
+    <title>subrat - sop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="./css/main.css">
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://threejs.org/examples/js/libs/stats.min.js"></script>
-    <link rel="stylesheet" href="./css/particle.css">
 </head>
 
 <body>
     <div id="hide-in-mobile">
-        <div id="particles-js"></div>
         <div class="container">
             <div class="left">
                 <div style="display: flex; flex-direction: column; align-items: center;">
@@ -23,12 +19,26 @@
             </div>
             <div class="center" style="display: flex; flex-direction: column; align-items: left; padding-left: 1vw;">
                 <div class="intro">
-                    <span><span id="name">subrat</span> <span id="here">here</span></span>
+                    <span id="here">sop</span>
                 </div>
                 <div class="description">
-                    <p>“I am <span id="iname">Subrat</span>, a final-year BS-MS student at IISER Berhampur, passionate
-                        about socio-ecological
-                        systems, environmental sustainability, and spatial data science.”</p>
+                    <p>“I am deeply passionate about interdisciplinary macro sciences such as Sustainable Sciences,
+                        Environmental Studies, and
+                        Eco-Bioinformatics. My primary interest lies in studying real-world problems and exploring their
+                        practical solutions by
+                        integrating methodologies like Remote Sensing & GIS, Data Management and Analysis, Informatics
+                        Architecture, fieldwork,
+                        and Citizen Science.
+                        What fascinates me most is the intersection of Sustainability, Biodiversity, Geography, and
+                        Human Demographics—viewed
+                        through the lens of time, tools, and evolving techniques. I am particularly drawn to areas
+                        involving policy-making,
+                        governance, citizen engagement, and evaluation of management practices, all approached with a
+                        holistic mindset shaped by
+                        my academic background, past experiences, and previous roles.
+                        I am eager to contribute to long-term, team-oriented projects that resonate with my interests
+                        and expertise—creating
+                        opportunities for meaningful application and continued learning.”</p>
                     <div id="button-div">
                         <a href="#" class="custom-btn">SOP</a>
                         <a href="#" class="custom-btn">Catalogue</a>
@@ -75,7 +85,7 @@
                 clearTimeout(closeTimer);
             }
             rightSection.style.width = '150px';
-            // centerSection.style.flex = '1.891';
+            // centerSection.style.flex = '0';
             menuOptions.style.display = 'flex';
         });
         menuContainer.addEventListener('mouseleave', () => {
@@ -86,7 +96,6 @@
             }, 100);
         });
     </script>
-    <script src="./js/particle.js"></script>
 </body>
 
 </html>

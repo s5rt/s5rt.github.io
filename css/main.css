@@ -42,6 +42,8 @@ html {
     align-items: left;
     justify-content: center;
     position: relative;
+    min-width: 0;
+    flex-shrink: 0;
 }
 
 .intro {
@@ -53,7 +55,7 @@ html {
     font-size: 1.2vw;
     color: #532d5d;
     margin: 20px 0;
-    max-width: 90%;
+    max-width: 95%;
     text-align: justify;
 }
 
@@ -81,6 +83,9 @@ html {
     align-items: center;
     padding: 20px 0;
     position: relative;
+    min-width: 80px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
 }
 
 .menu-button {
