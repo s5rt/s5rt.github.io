@@ -6,131 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>subrat - homepage</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body,
-        html {
-            height: 100%;
-            font-family: 'Courier New', Courier, monospace;
-            background: #f9f9f9;
-            color: #532d5d;
-        }
-
-        .container {
-            display: flex;
-            height: 100vh;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .left {
-            flex: 1;
-            background: #f4f3fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .left img {
-            max-width: 90%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 60% 40% 60% 40% / 50% 60% 40% 50%;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            z-index: 3;
-        }
-
-        .center {
-            flex: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .intro {
-            text-align: center;
-            max-width: 400px;
-        }
-
-        .intro h1,
-        .intro h2 {
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
-        .intro .highlight {
-            color: #f05d4e;
-        }
-
-        .intro .small {
-            font-size: 14px;
-            color: #532d5d;
-        }
-
-        .right {
-            width: 80px;
-            background-color: #210b28;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            position: relative;
-        }
-
-        .menu-button {
-            cursor: pointer;
-        }
-
-        .menu-button i {
-            color: white;
-            font-size: 20px;
-        }
-
-        .social-icons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .social-icons a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        @font-face {
-            font-family: 'Ferro Rosso';
-            src: url('./fonts/ferro_rosso/ferro_rosso.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        #name {
-            font-family: 'Ferro Rosso', sans-serif;
-            font-size: 10vw;
-        }
-
-        #here {
-            font-size: 1vw;
-        }
-    </style>
-    <!-- particle -->
+    <link rel="stylesheet" href="./css/main.css">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://threejs.org/examples/js/libs/stats.min.js"></script>
     <link rel="stylesheet" href="./css/particle.css">
 </head>
 
 <body>
-    <!-- Particle background (moved outside and below everything) -->
     <div id="particles-js"></div>
-    <!-- Main content above particles -->
     <div class="container">
         <div class="left">
             <div style="display: flex; flex-direction: column; align-items: center;">
@@ -147,11 +30,10 @@
                 <i class="fas fa-bars"></i>
             </div>
             <div class="social-icons">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-researchgate"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-dribbble"></i></a>
-                <a href="#"><i class="fab fa-webflow"></i></a>
+                <a href="#"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </div>
     </div>
