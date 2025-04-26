@@ -1,17 +1,19 @@
 #particles-js {
-    position: absolute;
-    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
     height: 100%;
-    background-color: #ff6767;
-    background-image: url("../imges/1.jpeg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 50%;
+    width: 100%;
     z-index: 0;
+    /* behind everything */
+    pointer-events: none;
+    /* allow interactions through it */
+    background: none;
+    /* transparent unless you want a background image */
 }
 .count-particles {
     position: absolute;
-    z-index: 0;
+    z-index: 2;
 }
 .js-count-particles {
     font-size: 1.1em;
