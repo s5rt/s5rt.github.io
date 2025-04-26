@@ -165,21 +165,21 @@ html {
     display: none;
     flex-direction: column;
     align-items: center;
-    background-color: #f4f3fa;
+    background-color: #210b28;
     padding: 10px 0;
     position: absolute;
     /* top: 50px; */
     /* right: 0; */
-    width: 160px;
+    width: 100%;
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     z-index: 5;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
 }
 
 .menu-options a {
     display: block;
-    width: 80%;
+    width: 70%;
     margin: 8px 0;
     padding: 10px 15px;
     text-align: center;
@@ -189,7 +189,7 @@ html {
     border-radius: 8px;
     font-size: 14px;
     font-family: inherit;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -202,7 +202,7 @@ html {
 /* Smooth transition */
 .right,
 .center {
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
 }
 
 /* On hover: resize right and center */
@@ -213,7 +213,7 @@ html {
 
 .menu-container:hover .menu-button i {
     /* transform: rotate(90deg); */
-    transition: transform 0.3s ease;
+    /* transition: transform 0.5s ease; */
 }
 
 @media only screen and (max-width: 768px) {
