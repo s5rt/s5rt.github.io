@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body,
 html {
     height: 100%;
@@ -10,12 +11,14 @@ html {
     background: #f9f9f9;
     color: #532d5d;
 }
+
 .container {
     display: flex;
     height: 100vh;
     width: 100%;
     overflow: hidden;
 }
+
 .left {
     flex: 1;
     background: #f4f3fa;
@@ -23,6 +26,7 @@ html {
     align-items: center;
     justify-content: center;
 }
+
 .left img {
     max-width: 90%;
     height: auto;
@@ -31,6 +35,7 @@ html {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     z-index: 3;
 }
+
 .center {
     flex: 2;
     display: flex;
@@ -38,22 +43,35 @@ html {
     justify-content: center;
     position: relative;
 }
+
 .intro {
     text-align: center;
-    max-width: 400px;
+    max-width: 60%;
 }
+
+.description {
+    font-size: 1.2vw;
+    color: #532d5d;
+    margin: 20px 0;
+    max-width: 85%;
+    text-align: justify;
+}
+
 .intro h1,
 .intro h2 {
     font-weight: bold;
     margin: 10px 0;
 }
+
 .intro .highlight {
     color: #f05d4e;
 }
+
 .intro .small {
     font-size: 14px;
     color: #532d5d;
 }
+
 .right {
     width: 80px;
     background-color: #210b28;
@@ -64,33 +82,87 @@ html {
     padding: 20px 0;
     position: relative;
 }
+
 .menu-button {
     cursor: pointer;
 }
+
 .menu-button i {
     color: white;
     font-size: 20px;
 }
+
 .social-icons {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
+
 .social-icons a {
     color: white;
     text-decoration: none;
     font-size: 14px;
 }
+
 @font-face {
     font-family: 'Ferro Rosso';
-    src: url('./fonts/ferro_rosso/ferro_rosso.ttf') format('truetype');
+    src: url('../fonts/ferro_rosso/ferro_rosso.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
 #name {
     font-family: 'Ferro Rosso', sans-serif;
     font-size: 10vw;
 }
+
 #here {
     font-size: 1vw;
+}
+
+#button-div {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.custom-btn {
+    background-color: #d7cce2;
+    border: none;
+    color: #532d5d;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.custom-btn:hover {
+    background-color: #210b28;
+    color: #d7cce2;
+    transform: translateY(-1.5px);
+}
+
+@media only screen and (max-width: 768px) {
+    #hide-in-mobile {
+        display: none;
+    }
+
+    #show-in-mobile {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #hide-in-mobile {
+        display: block;
+    }
+
+    #show-in-mobile {
+        display: none;
+    }
 }

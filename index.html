@@ -13,29 +13,47 @@
 </head>
 
 <body>
-    <div id="particles-js"></div>
-    <div class="container">
-        <div class="left">
-            <div style="display: flex; flex-direction: column; align-items: center;">
-                <img src="./imges/side.png" alt="subrat">
+    <div id="hide-in-mobile">
+        <div id="particles-js"></div>
+        <div class="container">
+            <div class="left">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="./imges/side.png" alt="subrat">
+                </div>
+            </div>
+            <div class="center" style="display: flex; flex-direction: column; align-items: center;">
+                <div class="intro">
+                    <span><span id="name">subrat</span> <span id="here">here</span></span>
+                </div>
+                <div class="description">
+                    <p>I'm a passionate developer with a keen interest in web development and machine learning. I love
+                        exploring new technologies and building innovative solutions.</p>
+                    <div id="button-div">
+                        <button class="custom-btn">Catalogue</button>
+                        <button class="custom-btn">Projects</button>
+                        <button class="custom-btn">Experience</button>
+                        <button class="custom-btn">Academia</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="right">
+                <div class="menu-button">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-researchgate"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                </div>
             </div>
         </div>
-        <div class="center">
-            <div class="intro">
-                <span><span id="name">subrat</span> <span id="here">here</span></span>
-            </div>
-        </div>
-        <div class="right">
-            <div class="menu-button">
-                <i class="fas fa-bars"></i>
-            </div>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-researchgate"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fa-solid fa-envelope"></i></a>
-            </div>
-        </div>
+    </div>
+    <div id="show-in-mobile">
+        <p>
+            this website is not available for mobile devices. please visit it on a desktop or laptop.
+        </p>
     </div>
     <script src="./js/particle.js"></script>
 </body>
