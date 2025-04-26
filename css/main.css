@@ -39,7 +39,7 @@ html {
 .center {
     flex: 2;
     display: flex;
-    align-items: center;
+    align-items: left;
     justify-content: center;
     position: relative;
 }
