@@ -125,7 +125,6 @@ html {
 }
 
 #button-div {
-
     margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
@@ -152,6 +151,69 @@ html {
     background-color: #210b28;
     color: #d7cce2;
     transform: translateY(-1.5px);
+}
+
+.menu-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-options {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f3fa;
+    padding: 10px 0;
+    position: absolute;
+    /* top: 50px; */
+    /* right: 0; */
+    width: 160px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    z-index: 5;
+    transition: all 0.3s ease;
+}
+
+.menu-options a {
+    display: block;
+    width: 80%;
+    margin: 8px 0;
+    padding: 10px 15px;
+    text-align: center;
+    background-color: #d7cce2;
+    color: #210b28;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.menu-options a:hover {
+    background-color: #532d5d;
+    color: #d7cce2;
+    transform: translateY(-2px);
+}
+
+/* Smooth transition */
+.right,
+.center {
+    transition: all 0.3s ease;
+}
+
+/* On hover: resize right and center */
+.menu-container:hover~.social-icons {
+    margin-top: 50px;
+    /* just slight adjustment if needed */
+}
+
+.menu-container:hover .menu-button i {
+    /* transform: rotate(90deg); */
+    transition: transform 0.3s ease;
 }
 
 @media only screen and (max-width: 768px) {

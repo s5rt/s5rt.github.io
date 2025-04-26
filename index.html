@@ -39,8 +39,15 @@
                 </div>
             </div>
             <div class="right">
-                <div class="menu-button">
-                    <i class="fas fa-bars"></i>
+                <div class="menu-container">
+                    <div class="menu-button">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <div class="menu-options" id="menu-options">
+                        <a href="#">About Me</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Blog</a>
+                    </div>
                 </div>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-linkedin"></i></a>
@@ -57,6 +64,28 @@
             this website is not available for mobile devices. please visit it on a desktop or laptop.
         </p>
     </div>
+    <script>
+        const menuContainer = document.querySelector('.menu-container');
+        const rightSection = document.querySelector('.right');
+        const centerSection = document.querySelector('.center');
+        const menuOptions = document.getElementById('menu-options');
+        let closeTimer = null;
+        menuContainer.addEventListener('mouseenter', () => {
+            if (closeTimer) {
+                clearTimeout(closeTimer);
+            }
+            rightSection.style.width = '200px';
+            centerSection.style.flex = '1.5';
+            menuOptions.style.display = 'flex';
+        });
+        menuContainer.addEventListener('mouseleave', () => {
+            closeTimer = setTimeout(() => {
+                rightSection.style.width = '80px';
+                centerSection.style.flex = '2';
+                menuOptions.style.display = 'none';
+            }, 100);
+        });
+    </script>
     <script src="./js/particle.js"></script>
 </body>
 
