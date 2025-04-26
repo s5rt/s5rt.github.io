@@ -46,14 +46,14 @@ html {
 
 .intro {
     text-align: left;
-    max-width: 60%;
+    max-width: 90%;
 }
 
 .description {
     font-size: 1.2vw;
     color: #532d5d;
     margin: 20px 0;
-    max-width: 85%;
+    max-width: 90%;
     text-align: justify;
 }
 
