@@ -45,7 +45,7 @@ html {
 }
 
 .intro {
-    text-align: center;
+    text-align: left;
     max-width: 60%;
 }
 
@@ -101,7 +101,7 @@ html {
 .social-icons a {
     color: white;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 2vw;
 }
 
 @font-face {
@@ -116,16 +116,22 @@ html {
     font-size: 10vw;
 }
 
+#iname {
+    font-weight: bold;
+}
+
 #here {
     font-size: 1vw;
 }
 
 #button-div {
+
     margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
-    justify-content: center;
+    justify-content: left;
+    text-decoration: none;
 }
 
 .custom-btn {
@@ -139,6 +145,7 @@ html {
     border-radius: 8px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
 }
 
 .custom-btn:hover {
