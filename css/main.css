@@ -31,7 +31,7 @@ html {
     max-width: 90%;
     height: auto;
     object-fit: cover;
-    border-radius: 60% 40% 60% 40% / 50% 60% 40% 50%;
+    border-radius: 60% 40% 60% 40% / 50% 60% 60% 50%;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     z-index: 3;
 }
@@ -199,21 +199,13 @@ html {
     transform: translateY(-2px);
 }
 
-/* Smooth transition */
 .right,
 .center {
     transition: all 0.5s ease;
 }
 
-/* On hover: resize right and center */
 .menu-container:hover~.social-icons {
     margin-top: 50px;
-    /* just slight adjustment if needed */
-}
-
-.menu-container:hover .menu-button i {
-    /* transform: rotate(90deg); */
-    /* transition: transform 0.5s ease; */
 }
 
 @media only screen and (max-width: 768px) {
