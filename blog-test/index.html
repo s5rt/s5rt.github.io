@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Subrat's Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+            background: #f9f9f9;
+        }
+
+        .blog-post {
+            background: #fff;
+            padding: 1em;
+            margin-bottom: 1em;
+            border-left: 4px solid #007acc;
+        }
+
+        .blog-post h2 {
+            margin-top: 0;
+            color: #007acc;
+        }
+
+        .blog-post small {
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Subrat's Blog</h1>
+    <div id="blogContainer">Loading blog posts...</div>
+
+    <script>
+        fetch('blogData.json') // must be in same folder/repo
+            .then(response => response.json())
+            .then(posts => {
+                const container = document.getElementById('blogContainer');
+                container.innerHTML = '';
+
+                posts.forEach(post => {
+                    const div = document.createElement('div');
+                    div.className = 'blog-post';
+                    div.innerHTML = `
+            <h2>${post.title}</h2>
+            <small>By ${post.author} on ${post.date}</small>
+            <p>${post.content}</p>
+          `;
+                    container.appendChild(div);
+                });
+            })
+            .catch(err => {
+                document.getElementById('blogContainer').innerText = 'Error loading blog posts.';
+                console.error('Failed to fetch blog data:', err);
+            });
+    </script>
+</body>
+
+</html>
