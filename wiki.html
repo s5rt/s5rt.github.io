@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Reverse Countdown — Oct 8 8:30 PM</title>
+<style>
+  /* Reset */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    background: linear-gradient(135deg,#0f172a,#001219);
+    color: #e6eef6;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  /* full-bleed container, centered */
+  .wrap {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: env(safe-area-inset);
+  }
+  /* main display in a horizontal row for landscape */
+  .counter {
+    display: flex;
+    gap: 3vmin;
+    align-items: center;
+    justify-content: center;
+    transform-origin: center;
+  }
+  /* each time block (Days/Hours/Minutes/Seconds) */
+  .block {
+    text-align: center;
+    min-width: 18vmax;
+    max-width: 34vmin;
+  }
+  .digits {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    /* big responsive font: depends on viewport size */
+    font-size: calc(8vmin + 4vmax);
+    line-height: 0.85;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.02) inset;
+  }
+  .label {
+    margin-top: 0.6rem;
+    font-size: calc(1.8vmin + 0.6vmax);
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  /* small status line */
+  .status {
+    position: absolute;
+    top: 1.6rem;
+    left: 1.6rem;
+    font-size: 1rem;
+    background: rgba(255,255,255,0.03);
+    padding: 0.45rem 0.65rem;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+  }
+  .target {
+    position: absolute;
+    top: 1.6rem;
+    right: 1.6rem;
+    font-size: 0.95rem;
+    background: rgba(255,255,255,0.03);
+    padding: 0.45rem 0.65rem;
+    border-radius: 8px;
+    opacity: 0.95;
+  }
+  /* landscape hint overlay when in portrait orientation */
+  .rotate-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(2,6,23,0.92), rgba(2,6,23,0.96));
+    color: #fff;
+    z-index: 50;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
+  .rotate-overlay .msg {
+    font-size: 4.2vmin;
+    max-width: 36rem;
+  }
+  .rotate-overlay .sub {
+    font-size: 2.2vmin;
+    margin-top: 1rem;
+    opacity: 0.9;
+  }
+  @media (orientation: portrait) {
+    .counter { transform: scale(0.85); }
+    .rotate-overlay { display: flex; }
+  }
+  /* small helpers */
+  .sep { opacity: 0.3; font-size: 0.8em; margin-top: 0.45rem; }
+  @media (max-width:900px) {
+    .block { min-width: 16vmax; }
+    .digits { font-size: calc(10vmin + 2vmax); }
+  }
+  /* subtle animation for digits when they change */
+  .digits.change {
+    transform: translateY(-6px);
+    transition: transform 140ms ease;
+  }
+  /* footer hint */
+  .hint {
+    position: absolute;
+    bottom: 1.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    opacity: 0.6;
+    background: rgba(255,255,255,0.02);
+    padding: .35rem .6rem;
+    border-radius: 6px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="status" id="status">Initializing…</div>
+    <div class="target">Target: Oct 8, 2025 — 8:30 PM (local time)</div>
+    <div class="counter" id="counter" aria-live="polite" role="status">
+      <div class="block">
+        <div class="digits" id="days">0</div>
+        <div class="label">Days</div>
+      </div>
+      <div class="block">
+        <div class="digits" id="hours">00</div>
+        <div class="label">Hours</div>
+      </div>
+      <div class="block">
+        <div class="digits" id="minutes">00</div>
+        <div class="label">Minutes</div>
+      </div>
+      <div class="block">
+        <div class="digits" id="seconds">00</div>
+        <div class="label">Seconds</div>
+      </div>
+    </div>
+    <div class="rotate-overlay" id="rotate">
+      <div>
+        <div class="msg">Rotate your device to <strong>landscape</strong> for the best view</div>
+        <div class="sub">Or widen your browser window. The numbers are big for a reason 😄</div>
+      </div>
+    </div>
+    <div class="hint">Auto-switches to "time since" after the target passes.</div>
+  </div>
+<script>
+  // Target local date/time (year, monthIndex, day, hours, minutes, seconds)
+  // monthIndex: 9 == October (0-based)
+  const target = new Date(2025, 9, 8, 20, 30, 0);
+  // Elements
+  const daysEl = document.getElementById('days');
+  const hoursEl = document.getElementById('hours');
+  const minutesEl = document.getElementById('minutes');
+  const secondsEl = document.getElementById('seconds');
+  const statusEl = document.getElementById('status');
+  // Helper: pad numbers
+  const pad = (n, digits=2) => String(n).padStart(digits, '0');
+  // convert ms to d/h/m/s
+  function breakdown(ms) {
+    const totalSec = Math.floor(Math.abs(ms) / 1000);
+    const s = totalSec % 60;
+    const totalMin = Math.floor(totalSec / 60);
+    const m = totalMin % 60;
+    const totalHr = Math.floor(totalMin / 60);
+    const h = totalHr % 24;
+    const d = Math.floor(totalHr / 24);
+    return { days: d, hours: h, minutes: m, seconds: s, totalMs: ms };
+  }
+  // small visual "pop" when numbers change
+  function animateIfChanged(el, newText) {
+    if (el.textContent !== newText) {
+      el.textContent = newText;
+      el.classList.add('change');
+      setTimeout(() => el.classList.remove('change'), 160);
+    }
+  }
+  function update() {
+    const now = new Date();
+    const diff = target - now; // ms: positive => target in future (countdown), negative => passed (countup)
+    const parts = breakdown(diff);
+    // show labels differently depending on before/after
+    if (diff > 0) {
+      statusEl.textContent = 'Time remaining';
+      statusEl.style.background = 'rgba(255,255,255,0.03)';
+    } else {
+      statusEl.textContent = 'Time since target (reverse)';
+      statusEl.style.background = 'rgba(255,80,80,0.06)';
+    }
+    // Update DOM with big numbers
+    animateIfChanged(daysEl, String(parts.days));
+    animateIfChanged(hoursEl, pad(parts.hours));
+    animateIfChanged(minutesEl, pad(parts.minutes));
+    animateIfChanged(secondsEl, pad(parts.seconds));
+  }
+  // initial render
+  update();
+  // update every 250ms for smoothness; display only changes per second, but keeps accurate
+  const interval = setInterval(update, 250);
+  // Accessibility: announce target with exact ISO local timestamp
+  statusEl.setAttribute('aria-label', 'Countdown target: ' + target.toLocaleString());
+  // If you want to stop at zero (not implemented): clearInterval(interval) when diff <= 0
+  //
+  // Landscape reminder: we show the overlay automatically via CSS media query.
+  // But to ensure desktop browsers rotated narrow windows show it too, toggle by width/height:
+  const rotateOverlay = document.getElementById('rotate');
+  function checkOrientation() {
+    if (window.innerHeight > window.innerWidth) {
+      rotateOverlay.style.display = 'flex';
+    } else {
+      rotateOverlay.style.display = 'none';
+    }
+  }
+  window.addEventListener('resize', checkOrientation);
+  checkOrientation();
+  // Bonus: allow quick keyboard key "r" to reset to target date shown in header (for testing)
+  // (kept unobtrusive)
+  window.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() === 'r') {
+      // minor visual flash to remind user
+      statusEl.style.transform = 'scale(0.98)';
+      setTimeout(()=> statusEl.style.transform = '', 140);
+    }
+  });
+  // Make sure the target label shows exact human-readable time (local)
+  const targetLabel = document.querySelector('.target');
+  targetLabel.textContent = 'Target: ' + target.toLocaleString(undefined, {
+    weekday: 'short', year:'numeric', month:'short', day:'numeric',
+    hour:'2-digit', minute:'2-digit', hour12: true
+  }) + ' (local time)';
+  // Clean up when page is unloaded
+  window.addEventListener('beforeunload', () => clearInterval(interval));
+</script>
+</body>
+</html>
