@@ -19,17 +19,6 @@
     <meta name="twitter:description"
         content="Research on sustainability, socio-ecological systems, spatial data science, biodiversity & governance.">
     <link rel="stylesheet" href="./css/main.css">
-    <style>
-        .social-icons img {
-            width: 30px;
-            height: 30px;
-            transition: transform 0.2s ease;
-        }
-
-        .social-icons img:hover {
-            transform: scale(1.15);
-        }
-    </style>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://threejs.org/examples/js/libs/stats.min.js"></script>
     <link rel="stylesheet" href="./css/particle.css">
@@ -39,32 +28,29 @@
     <div id="hide-in-mobile">
         <div id="particles-js"></div>
         <div class="container">
-            <main>
-                <div class="left">
-                    <div style="display: flex; flex-direction: column; align-items: center;">
-                        <img src="./imges/side.png" alt="subrat">
+            <div class="left">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="./imges/side.png" alt="subrat">
+                </div>
+            </div>
+            <div class="center" style="display: flex; flex-direction: column; align-items: left; padding-left: 1vw;">
+                <div class="intro">
+                    <span><span id="name">subrat</span> <span id="here">here</span></span>
+                </div>
+                <div class="description">
+                    <p>“I am <span id="iname">Subrat</span>, a final-year BS-MS student at IISER Berhampur,
+                        passionate
+                        about socio-ecological
+                        systems, environmental sustainability, and spatial data science.”</p>
+                    <div id="button-div">
+                        <a href="sop.html" class="custom-btn">SOP</a>
+                        <a href="#" class="custom-btn">Catalogue</a>
+                        <a href="#" class="custom-btn">Projects</a>
+                        <a href="#" class="custom-btn">Experience</a>
+                        <a href="#" class="custom-btn">Academia</a>
                     </div>
                 </div>
-                <div class="center"
-                    style="display: flex; flex-direction: column; align-items: left; padding-left: 1vw;">
-                    <div class="intro">
-                        <span><span id="name">subrat</span> <span id="here">here</span></span>
-                    </div>
-                    <div class="description">
-                        <p>“I am <span id="iname">Subrat</span>, a final-year BS-MS student at IISER Berhampur,
-                            passionate
-                            about socio-ecological
-                            systems, environmental sustainability, and spatial data science.”</p>
-                        <div id="button-div">
-                            <a href="sop.php" class="custom-btn">SOP</a>
-                            <a href="#" class="custom-btn">Catalogue</a>
-                            <a href="#" class="custom-btn">Projects</a>
-                            <a href="#" class="custom-btn">Experience</a>
-                            <a href="#" class="custom-btn">Academia</a>
-                        </div>
-                    </div>
-                </div>
-            </main>
+            </div>
             <div class="right">
                 <div class="menu-container">
                     <div class="menu-button">
@@ -98,7 +84,6 @@
             </div>
         </div>
     </div>
-    </div>
     <div id="show-in-mobile">
         <p>
             this website is not available for mobile devices. please visit it on a desktop or laptop.
@@ -115,6 +100,7 @@
                 clearTimeout(closeTimer);
             }
             rightSection.style.width = '150px';
+            // centerSection.style.flex = '1.891';
             menuOptions.style.display = 'flex';
         });
         menuContainer.addEventListener('mouseleave', () => {
