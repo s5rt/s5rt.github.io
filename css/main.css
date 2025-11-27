@@ -109,6 +109,16 @@ html {
     font-size: 2vw;
 }
 
+.social-icons img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.2s ease;
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
+}
+
 @font-face {
     font-family: 'Ferro Rosso';
     src: url('../fonts/ferro_rosso/ferro_rosso.ttf') format('truetype');
