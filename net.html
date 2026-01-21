@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Internet Strength Monitor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: #e5e7eb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: #020617;
+            padding: 25px;
+            border-radius: 12px;
+            width: 320px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .bar {
+            height: 20px;
+            background: #1e293b;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ef4444, #facc15, #22c55e);
+            transition: width 0.5s;
+        }
+
+        .info {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .status {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h2>Internet Strength</h2>
+        <div class="bar">
+            <div class="bar-fill" id="strengthBar"></div>
+        </div>
+        <div class="info">
+            <div>Connection: <span id="type">Detecting…</span></div>
+            <div>Downlink: <span id="speed">–</span> Mbps</div>
+            <div>Latency: <span id="latency">–</span> ms</div>
+        </div>
+        <div class="status" id="status">Checking…</div>
+    </div>
+    <script>
+        async function measureLatency() {
+            const start = performance.now();
+            try {
+                await fetch("https://www.google.com/favicon.ico", { mode: "no-cors" });
+                return Math.round(performance.now() - start);
+            } catch {
+                return null;
+            }
+        }
+        async function updateConnectionInfo() {
+            const bar = document.getElementById("strengthBar");
+            const typeEl = document.getElementById("type");
+            const speedEl = document.getElementById("speed");
+            const latencyEl = document.getElementById("latency");
+            const statusEl = document.getElementById("status");
+            if (!navigator.onLine) {
+                bar.style.width = "0%";
+                statusEl.textContent = "Offline";
+                return;
+            }
+            const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            let speed = conn?.downlink || 0;
+            let type = conn?.effectiveType || "unknown";
+            const latency = await measureLatency();
+            // Strength calculation
+            let strength = Math.min(100, Math.round((speed / 50) * 100));
+            bar.style.width = strength + "%";
+            typeEl.textContent = conn?.type || type;
+            speedEl.textContent = speed.toFixed(1);
+            latencyEl.textContent = latency ?? "N/A";
+            if (strength > 70) statusEl.textContent = "Excellent";
+            else if (strength > 40) statusEl.textContent = "Good";
+            else if (strength > 15) statusEl.textContent = "Poor";
+            else statusEl.textContent = "Very Weak";
+        }
+        updateConnectionInfo();
+        setInterval(updateConnectionInfo, 2000);
+    </script>
+</body>
+
+</html>
